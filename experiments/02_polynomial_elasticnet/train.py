@@ -179,19 +179,13 @@ def main():
     print(f"Ridge (degree 2):      {np.sqrt(mean_squared_error(y_train, ridge_oof)):.4f}")
     print(f"Ridge (degree 3):      {np.sqrt(mean_squared_error(y_train, ridge3_oof)):.4f}")
 
-    # Save best submission
-    best_rmse = min(
-        np.sqrt(mean_squared_error(y_train, elastic_oof)),
-        np.sqrt(mean_squared_error(y_train, ridge_oof)),
-        np.sqrt(mean_squared_error(y_train, ridge3_oof))
-    )
+    # Save OOF predictions
+    np.save('oof_ridge_deg3.npy', ridge3_oof)
+    np.save('y_train.npy', y_train)
+    print("Saved OOF predictions (.npy files)")
 
-    if np.sqrt(mean_squared_error(y_train, ridge3_oof)) == best_rmse:
-        create_submission(test_ids, ridge3_test, 'submission_ridge_deg3.csv')
-    elif np.sqrt(mean_squared_error(y_train, ridge_oof)) == best_rmse:
-        create_submission(test_ids, ridge_test, 'submission_ridge_deg2.csv')
-    else:
-        create_submission(test_ids, elastic_test, 'submission_elasticnet_deg2.csv')
+    # Save best submission
+    create_submission(test_ids, ridge3_test, 'submission_ridge_deg3.csv')
 
 
 if __name__ == '__main__':
