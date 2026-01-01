@@ -429,6 +429,12 @@ def main():
         ens_rmse = np.sqrt(mean_squared_error(y_train, ens_oof))
         print(f"Ensemble (MLP={w:.1f}, LGB={1-w:.1f}): {ens_rmse:.4f}")
 
+    # Save OOF predictions
+    np.save('oof_lgb_emb.npy', lgb_oof)
+    np.save('oof_mlp_emb.npy', mlp_oof)
+    np.save('y_train.npy', y_train)
+    print("Saved OOF predictions (.npy files)")
+
     # Save best submission (likely LGB with embeddings)
     create_submission(test_ids, lgb_test, 'submission_lgb_embeddings.csv')
     create_submission(test_ids, mlp_test, 'submission_mlp_embeddings.csv')

@@ -214,6 +214,11 @@ def main():
     # Train MLP
     mlp_oof, mlp_test = train_mlp(X_train, y_train, X_test, n_folds=5, epochs=100, batch_size=1024, lr=1e-3)
 
+    # Save OOF predictions
+    np.save('oof_mlp.npy', mlp_oof)
+    np.save('y_train.npy', y_train)
+    print("Saved OOF predictions (.npy files)")
+
     # Save submission
     create_submission(test_ids, mlp_test, 'submission_mlp.csv')
 
