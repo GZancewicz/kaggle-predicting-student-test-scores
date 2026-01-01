@@ -11,6 +11,7 @@ Competition to predict student exam scores based on study habits, demographics, 
 | 01 | LightGBM + XGBoost Ensemble | **8.74** |
 | 02 | Polynomial Ridge (degree 3) | 8.98 |
 | 04 | MLP Neural Network | 8.94 |
+| 05 | Embeddings + LightGBM | 8.76 |
 
 **Leaderboard target**: ~8.57
 
