@@ -289,6 +289,15 @@ def main():
 
     print(f"\nFinal Ensemble CV RMSE: {np.sqrt(mean_squared_error(y_train, final_oof)):.4f}")
 
+    # Save OOF predictions for model averaging
+    np.save('oof_lgb.npy', lgb_oof)
+    np.save('oof_xgb.npy', xgb_oof)
+    np.save('oof_ensemble.npy', final_oof)
+    np.save('y_train.npy', y_train)
+    if cat_oof is not None:
+        np.save('oof_cat.npy', cat_oof)
+    print("Saved OOF predictions (.npy files)")
+
     # Save submissions
     create_submission(test_ids, lgb_test, 'submission_lgb.csv')
     create_submission(test_ids, xgb_test, 'submission_xgb.csv')
