@@ -19,9 +19,10 @@ Two methods to correct systematic biases detected in residual analysis:
 
 | Method | CV RMSE | Change |
 |--------|---------|--------|
-| Baseline (Exp 05) | ~8.76 | - |
-| + Linear Correction | ~8.76 | minimal |
-| + Stacked Correction | ~8.76 | minimal |
+| Baseline (Exp 05) | 8.7586 | - |
+| Best Correction | 8.7606 | +0.002 |
+
+No improvement - model was already well-calibrated.
 
 ## Usage
 

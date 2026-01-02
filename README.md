@@ -8,11 +8,15 @@ Competition to predict student exam scores based on study habits, demographics, 
 
 | Experiment | Model | CV RMSE |
 |------------|-------|---------|
-| 01 | LightGBM + XGBoost Ensemble | **8.74** |
-| 02 | Polynomial Ridge (degree 3) | 8.98 |
-| 04 | MLP Neural Network | 8.94 |
-| 05 | Embeddings + LightGBM | 8.76 |
+| 01 | LightGBM + XGBoost Ensemble | 8.7411 |
+| 02 | Polynomial Ridge (degree 3) | 8.9818 |
+| 04 | MLP Neural Network | 8.9394 |
+| 05 | Embeddings + LightGBM | 8.7586 |
+| 06 | Residual Correction | 8.7606 |
+| 07 | Enhanced Features + LGB | **8.7395** |
+| 08 | Custom Encoding MLP | 9.0296 |
 
+**Best**: Experiment 07 (8.7395)
 **Leaderboard target**: ~8.57
 
 ## Data
@@ -53,7 +57,12 @@ Competition to predict student exam scores based on study habits, demographics, 
 │   ├── 01_baseline_lgb_xgb_catboost_ensemble/
 │   ├── 02_polynomial_elasticnet/
 │   ├── 03_eda_feature_discovery/
-│   └── 04_neural_network/
+│   ├── 04_neural_network/
+│   ├── 05_embedding_lgb/
+│   ├── 06_residual_correction/
+│   ├── 07_enhanced_features_embeddings/
+│   ├── 08_custom_encoding_mlp/
+│   └── 09_polynomial_mlp/
 ├── requirements.txt        # Python dependencies
 └── README.md              # This file
 ```

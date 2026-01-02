@@ -19,6 +19,15 @@ Added new features targeting patterns found in residual analysis:
 - 12 numeric features (4 base + 8 engineered)
 - 7 categorical features (label encoded)
 
+## Results
+
+| Model | CV RMSE |
+|-------|---------|
+| Exp 05 Baseline | 8.7586 |
+| **Exp 07 Enhanced** | **8.7395** |
+
+Improvement: **-0.019 RMSE**
+
 ## Usage
 
 ```bash

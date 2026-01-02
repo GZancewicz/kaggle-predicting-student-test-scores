@@ -27,6 +27,15 @@ PyTorch MLP with custom categorical encodings.
 - BatchNorm + ReLU + Dropout(0.2)
 - 5-fold CV with early stopping
 
+## Results
+
+| Model | CV RMSE |
+|-------|---------|
+| Exp 08 Custom MLP | 9.0296 |
+| Exp 01 Ensemble | 8.7411 |
+
+MLP still underperforms gradient boosting.
+
 ## Usage
 
 ```bash
