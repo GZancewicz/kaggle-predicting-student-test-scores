@@ -17,6 +17,7 @@ Competition to predict student exam scores based on study habits, demographics, 
 | 08 | Custom Encoding MLP | 9.0296 | MLP with custom ordinal/frequency encodings for categoricals |
 | 09 | Polynomial MLP | ~8.91 | MLP with degree-2 polynomial feature expansion (77 features) |
 | 10 | Polynomial LGB/XGB Ensemble | 8.7568 | Exp 01 ensemble with polynomial features (worse than original) |
+| 11 | Stacking Ensemble | 8.7604 | CatBoost + LGB with target encoding, Ridge stacker, calibration (1 seed) |
 
 **Best**: Experiment 07 (8.7395)
 **Leaderboard target**: ~8.57
@@ -65,7 +66,8 @@ Competition to predict student exam scores based on study habits, demographics, 
 │   ├── 07_enhanced_features_embeddings/
 │   ├── 08_custom_encoding_mlp/
 │   ├── 09_polynomial_mlp/
-│   └── 10_ensemble_enhanced_features/
+│   ├── 10_ensemble_enhanced_features/
+│   └── 11_stacking_ensemble/
 ├── requirements.txt        # Python dependencies
 └── README.md              # This file
 ```
