@@ -26,6 +26,18 @@ After polynomial expansion:
 - BatchNorm + ReLU + Dropout(0.2)
 - 5-fold CV with early stopping
 
+## Results (partial - aborted during fold 4)
+
+| Fold | Best RMSE | Epochs |
+|------|-----------|--------|
+| 1 | 8.8963 | 62 (early stop) |
+| 2 | 8.9142 | 59 (early stop) |
+| 3 | 8.9155 | 67 (early stop) |
+
+Estimated CV RMSE: ~8.91 (based on 3 folds)
+
+Still underperforms gradient boosting (~8.74). Polynomial features don't help MLP.
+
 ## Usage
 
 ```bash

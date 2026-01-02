@@ -6,15 +6,17 @@ Competition to predict student exam scores based on study habits, demographics, 
 
 ## Results
 
-| Experiment | Model | CV RMSE |
-|------------|-------|---------|
-| 01 | LightGBM + XGBoost Ensemble | 8.7411 |
-| 02 | Polynomial Ridge (degree 3) | 8.9818 |
-| 04 | MLP Neural Network | 8.9394 |
-| 05 | Embeddings + LightGBM | 8.7586 |
-| 06 | Residual Correction | 8.7606 |
-| 07 | Enhanced Features + LGB | **8.7395** |
-| 08 | Custom Encoding MLP | 9.0296 |
+| Experiment | Model | CV RMSE | Summary |
+|------------|-------|---------|---------|
+| 01 | LightGBM + XGBoost Ensemble | 8.7411 | Baseline ensemble with hand-tuned params and basic feature engineering |
+| 02 | Polynomial Ridge (degree 3) | 8.9818 | Linear model with polynomial feature expansion |
+| 04 | MLP Neural Network | 8.9394 | Simple 3-layer neural network with label-encoded categoricals |
+| 05 | Embeddings + LightGBM | 8.7586 | Learned categorical embeddings fed into LightGBM |
+| 06 | Residual Correction | 8.7606 | Post-prediction adjustment based on residual slopes (no improvement) |
+| 07 | Enhanced Features + LGB | **8.7395** | LightGBM with residual-informed engineered features |
+| 08 | Custom Encoding MLP | 9.0296 | MLP with custom ordinal/frequency encodings for categoricals |
+| 09 | Polynomial MLP | ~8.91 | MLP with degree-2 polynomial feature expansion (77 features) |
+| 10 | Polynomial LGB/XGB Ensemble | 8.7568 | Exp 01 ensemble with polynomial features (worse than original) |
 
 **Best**: Experiment 07 (8.7395)
 **Leaderboard target**: ~8.57
@@ -62,7 +64,8 @@ Competition to predict student exam scores based on study habits, demographics, 
 │   ├── 06_residual_correction/
 │   ├── 07_enhanced_features_embeddings/
 │   ├── 08_custom_encoding_mlp/
-│   └── 09_polynomial_mlp/
+│   ├── 09_polynomial_mlp/
+│   └── 10_ensemble_enhanced_features/
 ├── requirements.txt        # Python dependencies
 └── README.md              # This file
 ```
