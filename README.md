@@ -18,6 +18,8 @@ Competition to predict student exam scores based on study habits, demographics, 
 | 09 | Polynomial MLP | ~8.91 | MLP with degree-2 polynomial feature expansion (77 features) |
 | 10 | Polynomial LGB/XGB Ensemble | 8.7568 | Exp 01 ensemble with polynomial features (worse than original) |
 | 11 | Stacking Ensemble | 8.7604 | CatBoost + LGB with target encoding, Ridge stacker, calibration (1 seed) |
+| 12 | Multi-Seed Stacking | 8.7563 | 3-seed averaging for variance reduction (minimal improvement) |
+| 13 | Stratified Folds | 8.7607 | Stratified by study_hours bins (no improvement vs regular KFold) |
 
 **Best**: Experiment 07 (8.7395)
 **Leaderboard target**: ~8.57
@@ -67,7 +69,10 @@ Competition to predict student exam scores based on study habits, demographics, 
 │   ├── 08_custom_encoding_mlp/
 │   ├── 09_polynomial_mlp/
 │   ├── 10_ensemble_enhanced_features/
-│   └── 11_stacking_ensemble/
+│   ├── 11_stacking_ensemble/
+│   ├── 12_multiseed_stacking/
+│   ├── 13_stratified_folds/
+│   └── 14_interaction_features/
 ├── requirements.txt        # Python dependencies
 └── README.md              # This file
 ```

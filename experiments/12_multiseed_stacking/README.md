@@ -1,51 +1,46 @@
 # Experiment 12: Multi-Seed Stacking
 
-Variance reduction via 3-seed averaging, then re-stack. No feature changes, no fold changes, no hyperparameter tuning.
-
-## Goal
-
-Validate whether variance reduction via multi-seed averaging unlocks the next performance tier before touching anything else.
-
-## Components
-
-1. **CatBoost** - native categoricals + ordered boosting (3 seeds)
-2. **LightGBM GOSS** - OOF target encoding (3 seeds)
-3. **Ridge stacker** - on seed-averaged predictions
-4. **Linear calibration** + clipping to [19, 100]
-
-## Configuration
-
-- N_FOLDS = 5 (same as Exp 11)
-- SEEDS = [42, 202, 999]
-- TARGET_SMOOTHING = 10
-- CLIP_RANGE = [19, 100]
-
-## Methodology
-
-1. Train each model across all folds × all seeds
-2. Collect OOF predictions per seed
-3. Average OOF/test predictions across seeds
-4. Stack seed-averaged predictions with Ridge
-5. Apply linear calibration + clipping
+Variance reduction via 3-seed averaging, then re-stack. No feature changes, no fold changes.
 
 ## Results
 
-*Run `python3 train.py` to populate*
+| Model | CV RMSE |
+|-------|---------|
+| CatBoost (3 seeds) | 8.7701 |
+| LightGBM TE (3 seeds) | 8.7612 |
+| Simple Average | 8.7573 |
+| Ridge Stacker | 8.7565 |
+| **Final (clipped)** | **8.7563** |
 
-## Decision Rule
+### Per-Seed Results
 
-- If CV improves >= 0.03 vs Exp 11 -> Scale to 5-10 seeds
-- If CV improves < 0.02 -> Stop scaling, revisit fold strategy or features
+**CatBoost**: [8.7741, 8.7716, 8.7750] (std: 0.0014)
+**LightGBM**: [8.7707, 8.7709, 8.7713] (std: 0.0003)
+
+### Comparison
+
+| Experiment | CV RMSE | Diff |
+|------------|---------|------|
+| Exp 11 (1 seed) | 8.7604 | - |
+| **Exp 12 (3 seeds)** | 8.7563 | +0.0041 |
+| Exp 07 (best) | 8.7395 | - |
+
+**Minimal improvement** (+0.0041) from multi-seed averaging. Variance is very low - not the bottleneck.
+
+## Conclusion
+
+- Seed std is tiny (CatBoost: 0.0014, LGB: 0.0003)
+- Scaling to more seeds won't help
+- Issue is signal, not variance
+
+## Runtime
+
+- CatBoost: 104.6 min (3 seeds)
+- LightGBM: 8.5 min (3 seeds)
+- Total: 113.2 min
 
 ## Usage
 
 ```bash
 python3 train.py
 ```
-
-## Outputs
-
-- `submission_catboost_seedavg.csv`
-- `submission_lgb_te_seedavg.csv`
-- `submission_stacked_seedavg.csv`
-- `submission_final.csv`
