@@ -20,6 +20,7 @@ Competition to predict student exam scores based on study habits, demographics, 
 | 11 | Stacking Ensemble | 8.7604 | CatBoost + LGB with target encoding, Ridge stacker, calibration (1 seed) |
 | 12 | Multi-Seed Stacking | 8.7563 | 3-seed averaging for variance reduction (minimal improvement) |
 | 13 | Stratified Folds | 8.7607 | Stratified by study_hours bins (no improvement vs regular KFold) |
+| 14 | Formula Discovery | 8.8885 | Residual analysis confirms data is NOT simple formula; trees capture nonlinear structure |
 
 **Best**: Experiment 07 (8.7395)
 **Leaderboard target**: ~8.57
