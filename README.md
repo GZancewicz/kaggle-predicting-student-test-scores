@@ -21,6 +21,7 @@ Competition to predict student exam scores based on study habits, demographics, 
 | 12 | Multi-Seed Stacking | 8.7563 | 3-seed averaging for variance reduction (minimal improvement) |
 | 13 | Stratified Folds | 8.7607 | Stratified by study_hours bins (no improvement vs regular KFold) |
 | 14 | Formula Discovery | 8.8885 | Residual analysis confirms data is NOT simple formula; trees capture nonlinear structure |
+| 15 | LGB Meta-Stacker | 8.7586 | Nonlinear stacker worse than Ridge by 0.003; no signal in 2-4 stacking features |
 
 **Best**: Experiment 07 (8.7395)
 **Leaderboard target**: ~8.57
@@ -73,7 +74,8 @@ Competition to predict student exam scores based on study habits, demographics, 
 │   ├── 11_stacking_ensemble/
 │   ├── 12_multiseed_stacking/
 │   ├── 13_stratified_folds/
-│   └── 14_interaction_features/
+│   ├── 14_interaction_features/
+│   └── 15_lgb_meta_stacker/
 ├── requirements.txt        # Python dependencies
 └── README.md              # This file
 ```
